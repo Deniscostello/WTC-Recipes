@@ -16,27 +16,22 @@ public class ScrapedFoodService {
 
 
     public List<FoodData> getByIngredient(String userIngredient){
-        List<FoodData> foodFound = scrapedFoodRepository.findByIngredients(userIngredient);
-        return foodFound;
+        return scrapedFoodRepository.findByIngredients(userIngredient);
     }
 
     public List<FoodData> getByPrepTime(String prepTime){
-        List<FoodData> food = scrapedFoodRepository.findByPrepTime(prepTime);
-        return food;
+        return scrapedFoodRepository.findByPrepTime(prepTime);
     }
 
     public List<FoodData> getByAllFood(){
-        List<FoodData> food = scrapedFoodRepository.findAll();
-        return food;
+        return scrapedFoodRepository.findAll();
     }
 
 
     public FoodData getByTitleFood(String usersTitle){
-        FoodData food = scrapedFoodRepository.findByTitle(usersTitle);
-        return food;
+        return scrapedFoodRepository.findByTitle(usersTitle);
     }
     public List<FoodData> getWantedTime (String cookingTime) {
-        List<FoodData> foodByTime = scrapedFoodRepository.findByCookTime(cookingTime);
-        return foodByTime;
+        return scrapedFoodRepository.findByCookTime(cookingTime);
     }
 }

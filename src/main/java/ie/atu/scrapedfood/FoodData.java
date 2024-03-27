@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,6 +19,6 @@ public class FoodData {
     private String cookTime;
     private List<String> ingredients;
     private float score;
-    private ArrayList steps;
+    private List<String> steps;
 
 }

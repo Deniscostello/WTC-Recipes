@@ -1,10 +1,6 @@
 package ie.atu.scrapedfood;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,45 +9,40 @@ import java.util.*;
 @RestController
 public class ScrapedFoodController {
 
-    private ScrapedFoodService scrapedFoodService;
-    @Autowired
-    private SearchRepoImpl searchRepo;
+    private final ScrapedFoodService scrapedFoodService;
 
-    public ScrapedFoodController(ScrapedFoodService scrapedFoodService) {
+    private final SearchRepoImpl searchRepo;
+
+    public ScrapedFoodController(ScrapedFoodService scrapedFoodService, SearchRepoImpl searchRepo) {
         this.scrapedFoodService = scrapedFoodService;
+        this.searchRepo = searchRepo;
     }
 
     @GetMapping("/findAll")
     public List<FoodData> findAllFood(){
-        List<FoodData> foodByAll = scrapedFoodService.getByAllFood();
-        return foodByAll;
+        return scrapedFoodService.getByAllFood();
     }
 
     @GetMapping("/findRecipesByText")
     public List<FoodData> getFoodText(@RequestParam String text){
-        List<FoodData> foodByText = searchRepo.findByText(text);
-        return foodByText;
+        return searchRepo.findByText(text);
     }
     @GetMapping("/findRecipesByTitle")
     public FoodData getFoodTitle(@RequestParam String title){
-        FoodData foodByTitle = scrapedFoodService.getByTitleFood(title);
-        return foodByTitle;
+        return  scrapedFoodService.getByTitleFood(title);
     }
 
     @GetMapping("/findRecipesByIngredient")
     public List<FoodData> getFoodUserIngredient(@RequestParam String ingredient){
-        List<FoodData> foodByIngredient = scrapedFoodService.getByIngredient(ingredient);
-        return foodByIngredient;
+        return  scrapedFoodService.getByIngredient(ingredient);
     }
 
     @GetMapping("/findRecipesByPrepTime")
     public List<FoodData> getFoodPrepTime(@RequestParam String prep_time){
-        List<FoodData> prepTime = scrapedFoodService.getByPrepTime(prep_time);
-        return prepTime;
+        return scrapedFoodService.getByPrepTime(prep_time);
     }
     @GetMapping("/findRecipesCookByTime")
     public List<FoodData> getFoodByCookTime(@RequestParam String cookTime){
-        List<FoodData> foodByTime = scrapedFoodService.getWantedTime(cookTime);
-        return foodByTime;
+        return scrapedFoodService.getWantedTime(cookTime);
     }
 }

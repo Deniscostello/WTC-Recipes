@@ -10,7 +10,6 @@ import java.util.List;
 public interface ScrapedFoodRepository extends MongoRepository<FoodData, ObjectId> {
     FoodData findByTitle(String title);
 
-    //FoodData findByPrepTime(String prep);
     List<FoodData> findByPrepTime(String prep_time);
 
 
