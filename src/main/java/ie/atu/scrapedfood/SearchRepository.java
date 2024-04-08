@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface SearchRepository {
 
-    List<FoodData> findByText(String text);
+    List<FoodData> findByText(List<String> text);
 }

@@ -15,8 +15,10 @@ public class FoodData {
     private String url;
     private String title;
     private String description;
+    private int recipeId;
     private String prepTime;
     private String cookTime;
+    private String image;
     private List<String> ingredients;
     private float score;
     private List<String> steps;

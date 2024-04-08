@@ -1,8 +1,6 @@
 package ie.atu.scrapedfood;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -23,10 +21,24 @@ public class ScrapedFoodController {
         return scrapedFoodService.getByAllFood();
     }
 
-    @GetMapping("/findRecipesByText")
-    public List<FoodData> getFoodText(@RequestParam String text){
-        return searchRepo.findByText(text);
+//    @GetMapping("/findRecipesByText")
+//    public List<FoodData> getFoodText(@RequestParam String text){
+//        return searchRepo.findByText(text);
+//    }
+
+
+//    @PostMapping ("/findRecipesByText")
+//    public List<FoodData> getUserRecipes(@RequestParam List<String> text){
+//        return searchRepo.findByText(text);
+//    }
+
+    @PostMapping("/findRecipes")
+    public List<FoodData> recipe( @RequestBody List<String> usersFood){
+        System.out.println(usersFood);
+        return searchRepo.findByText(usersFood);
     }
+
+
     @GetMapping("/findRecipesByTitle")
     public FoodData getFoodTitle(@RequestParam String title){
         return  scrapedFoodService.getByTitleFood(title);

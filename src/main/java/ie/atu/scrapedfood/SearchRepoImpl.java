@@ -24,7 +24,7 @@ public class SearchRepoImpl implements SearchRepository {
     MongoConverter converter;
 
     @Override
-    public List<FoodData> findByText(String text) {
+    public List<FoodData> findByText(List<String> text) {
         List<FoodData> recipes = new ArrayList<>();
 
         MongoDatabase database = client.getDatabase("ScrapedRecipes");
@@ -44,6 +44,8 @@ public class SearchRepoImpl implements SearchRepository {
                                 .append("prepTime", 1L)
                                 .append("cookTime", 1L)
                                 .append("ingredients", 1L)
+                                .append("recipeId", 1L)
+                                .append("image", 1L)
                                 .append("steps", 1L)),
                 new Document("$sort",
                         new Document("score",
