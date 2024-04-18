@@ -21,17 +21,6 @@ public class ScrapedFoodController {
         return scrapedFoodService.getByAllFood();
     }
 
-//    @GetMapping("/findRecipesByText")
-//    public List<FoodData> getFoodText(@RequestParam String text){
-//        return searchRepo.findByText(text);
-//    }
-
-
-//    @PostMapping ("/findRecipesByText")
-//    public List<FoodData> getUserRecipes(@RequestParam List<String> text){
-//        return searchRepo.findByText(text);
-//    }
-
     @PostMapping("/findRecipes")
     public List<FoodData> recipe( @RequestBody List<String> usersFood){
         System.out.println(usersFood);
@@ -56,5 +45,12 @@ public class ScrapedFoodController {
     @GetMapping("/findRecipesCookByTime")
     public List<FoodData> getFoodByCookTime(@RequestParam String cookTime){
         return scrapedFoodService.getWantedTime(cookTime);
+    }
+
+    @PostMapping("/findRecipeById")
+    public List<String> getRecipeById(@RequestBody List<String> ids){
+        System.out.println(ids);
+
+        return ids;
     }
 }
