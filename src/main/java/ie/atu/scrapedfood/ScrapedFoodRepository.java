@@ -16,4 +16,6 @@ public interface ScrapedFoodRepository extends MongoRepository<FoodData, ObjectI
     List<FoodData> findByIngredients(String ingredient);
 
     List<FoodData> findByCookTime(String cookingTime);
+
+    FoodData findByRecipeId(int id);
 }

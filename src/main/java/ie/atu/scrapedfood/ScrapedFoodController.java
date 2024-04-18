@@ -48,9 +48,9 @@ public class ScrapedFoodController {
     }
 
     @PostMapping("/findRecipeById")
-    public List<String> getRecipeById(@RequestBody List<String> ids){
-        System.out.println(ids);
-
-        return ids;
+    public String getRecipeById(@RequestBody int id){
+        FoodData response = scrapedFoodService.findRecipeById(id);
+        System.out.println(response);
+        return "Them";
     }
 }
