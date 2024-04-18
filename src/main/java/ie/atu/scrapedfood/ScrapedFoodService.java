@@ -3,7 +3,9 @@ import org.springframework.stereotype.Service;
 
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -36,8 +38,12 @@ public class ScrapedFoodService {
         return scrapedFoodRepository.findByCookTime(cookingTime);
     }
 
-    public FoodData findRecipeById(int id){
-        FoodData result = scrapedFoodRepository.findByRecipeId(id);
-        return result;
+    public List<FoodData> findRecipeById(List<Integer> recipeIds){
+        List<FoodData> allRecipes = new ArrayList<>();
+        for(int i=0; i < recipeIds.size(); i++){
+            allRecipes.add(scrapedFoodRepository.findByRecipeId(recipeIds.get(i)));
+        }
+
+        return allRecipes;
     }
 }

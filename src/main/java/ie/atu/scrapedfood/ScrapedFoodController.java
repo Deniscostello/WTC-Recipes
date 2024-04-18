@@ -1,5 +1,7 @@
 package ie.atu.scrapedfood;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -48,9 +50,10 @@ public class ScrapedFoodController {
     }
 
     @PostMapping("/findRecipeById")
-    public String getRecipeById(@RequestBody int id){
-        FoodData response = scrapedFoodService.findRecipeById(id);
-        System.out.println(response);
-        return "Them";
+    public ResponseEntity<Map<String, List<FoodData>>> getRecipeById(@RequestBody List<Integer> ids){
+        List<FoodData> recipes = scrapedFoodService.findRecipeById(ids);
+        Map<String, List<FoodData>> response = new HashMap<>();
+        response.put("recipes", recipes);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
