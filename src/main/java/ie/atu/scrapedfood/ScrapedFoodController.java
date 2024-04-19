@@ -50,10 +50,12 @@ public class ScrapedFoodController {
     }
 
     @PostMapping("/findRecipeById")
-    public ResponseEntity<Map<String, List<FoodData>>> getRecipeById(@RequestBody List<Integer> ids){
+    public List<FoodData> getRecipeById(@RequestBody List<Integer> ids){
         List<FoodData> recipes = scrapedFoodService.findRecipeById(ids);
-        Map<String, List<FoodData>> response = new HashMap<>();
-        response.put("recipes", recipes);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+//        Map<String, List<FoodData>> response = new HashMap<>();
+//        response.put("recipes", recipes);
+        return recipes;
     }
+
+
 }
