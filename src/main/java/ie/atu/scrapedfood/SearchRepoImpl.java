@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -51,7 +52,13 @@ public class SearchRepoImpl implements SearchRepository {
                         new Document("score",
                                 new Document("$meta", "textScore")))));
 
-        result.forEach(doc -> recipes.add(converter.read(FoodData.class, doc)));
+        //result.forEach(doc -> recipes.add(converter.read(FoodData.class, doc)));
+
+        //only add the first (highest textScore) to recipes
+        Iterator<Document> iterator = result.iterator();
+        for (int i = 0; i < 10 && iterator.hasNext(); i++) {
+            recipes.add(converter.read(FoodData.class, iterator.next()));
+        }
 
         return recipes;
     }

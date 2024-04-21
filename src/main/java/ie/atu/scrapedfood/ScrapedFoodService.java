@@ -1,12 +1,7 @@
 package ie.atu.scrapedfood;
 import org.springframework.stereotype.Service;
 
-
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 
 @Service
@@ -38,12 +33,17 @@ public class ScrapedFoodService {
         return scrapedFoodRepository.findByCookTime(cookingTime);
     }
 
-    public List<FoodData> findRecipeById(List<Integer> recipeIds){
-        List<FoodData> allRecipes = new ArrayList<>();
-        for(int i=0; i < recipeIds.size(); i++){
-            allRecipes.add(scrapedFoodRepository.findByRecipeId(recipeIds.get(i)));
-        }
 
-        return allRecipes;
+
+
+    public FoodData findRecipeById(int recipeId){
+        FoodData recipeFound = (scrapedFoodRepository.findByRecipeId(recipeId));
+        try {
+            Thread.sleep(100);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return recipeFound;
     }
 }
